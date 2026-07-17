@@ -21,6 +21,28 @@ st.markdown("""
 
 st.title("Analytics Studio 💬")
 
+# Initialize required session state variables if user navigated here directly
+if "messages" not in st.session_state:
+    st.session_state.messages = [
+        {"role": "assistant", "content": "Welcome to the Analytics Studio! Upload a CSV in the sidebar to begin.", "type": "text"}
+    ]
+if "model_settings" not in st.session_state:
+    st.session_state.model_settings = {
+        "model_name": "gemini-3.1-flash-lite",
+        "temperature": 0.0,
+        "max_iterations": 4
+    }
+if "api_key" not in st.session_state:
+    st.session_state.api_key = ""
+if "df_cleaned" not in st.session_state:
+    st.session_state.df_cleaned = None
+if "data_metrics" not in st.session_state:
+    st.session_state.data_metrics = None
+if "vector_store" not in st.session_state:
+    st.session_state.vector_store = None
+if "router" not in st.session_state:
+    st.session_state.router = None
+
 # Sidebar Configuration and Upload
 with st.sidebar:
     st.header("Configuration & Data")
